@@ -538,7 +538,7 @@ export default function App() {
           <div className="logo">
             <div className="logo-mark">Bharat<span>sure</span></div>
             <div className="logo-divider" />
-            <div className="logo-sub-text">Partner Portal</div>
+            <div className="logo-sub-text">Document Portal</div>
           </div>
           <div className="nav-right">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
