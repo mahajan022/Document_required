@@ -380,7 +380,7 @@ function CopyBtn({ text, label = "Copy", variant = "default" }) {
 }
 
 function DocCard({ title, subtitle, docs }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const text = `${title}${subtitle ? ` – ${subtitle}` : ""}\n\n${docs.map((d, i) => `${i + 1}. ${d}`).join("\n")}`;
   return (
     <div className="doc-card">
@@ -564,7 +564,7 @@ export default function App() {
           <div className="logo">
             <div className="logo-mark">Bharat<span>sure</span></div>
             <div className="logo-divider" />
-            <div className="logo-sub-text">Document Portal</div>
+            <div className="logo-sub-text">Partner Portal</div>
           </div>
           <div className="nav-right">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
