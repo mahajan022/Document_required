@@ -98,6 +98,7 @@ const GTLI_DOCS = [
   "Duly Filled CKYC form with latest photograph",
   "Driving License of Insured if insured was driving the vehicle at the time of accident",
   "Copy of Loan certificate / agreement and Loan statement",
+  "Any other documents requested by our claims team",
   "CKYC form duly filled, signed with affix latest photograph of the nominee person",
 ];
 
@@ -113,6 +114,7 @@ const AFF_GHI = [
   "Indoor case papers",
   "Cancelled Cheque with Bank details",
   "For accident cases, FIR copy (if applicable)",
+  "Any other document as required by the company to assess the claim",
 ];
 
 const AFF_HOSPICASH = [
@@ -121,6 +123,7 @@ const AFF_HOSPICASH = [
   "Discharge Card: self-attested photocopy",
   "KYC documents of the insured member against whom the claim has been made",
   "Payee's NEFT details / cancelled cheque",
+  "Any other documents required by the company for claim assessment",
 ];
 
 const AFF_PET = [
@@ -131,6 +134,7 @@ const AFF_PET = [
   "Hospital bill (in case of claim under Hospitalization)",
   "Diagnostics Report & Lab test reports",
   "Discharge sheet / Summary (in case of claim under Hospitalization)",
+  "Any other documents if required by the Company to process the claim",
 ];
 
 const AFF_SOLAR = [
@@ -146,6 +150,7 @@ const AFF_CREDIT = [
   "Duly filled claim form along with bank details of the claimant",
   "Death certificate issued by the authority",
   "Member consent form along with Notice of Assignment Consent",
+  "Any other documents required for processing the claims",
   "Cancelled cheque / Bank Statement / Bank Passbook / Letter from the bank",
   "Copy of FIR & PM in case of Accidental Death Benefit",
   "Credit outstanding statement issued by MPH in case of Notice of Assignment Consent",
@@ -519,6 +524,27 @@ function AffinitySection() {
   );
 }
 
+// ─── RETAIL SECTION ────────────────────────────────────────────
+function RetailSection() {
+  const ghiText = `GHI – KYC Documents\n\n${GHI_KYC.map((d,i)=>`${i+1}. ${d}`).join("\n")}`;
+
+  return (
+    <div>
+      <InsBlock badge="GHI" title="Group Health Insurance" copyText={ghiText} copyLabel="Copy GHI Docs">
+        <DocCard title="KYC Documents" docs={GHI_KYC} />
+      </InsBlock>
+
+      <div className="copy-all-banner">
+        <div>
+          <div className="copy-all-title">Copy All Retail Documents</div>
+          <div className="copy-all-sub">GHI KYC documents — paste into WhatsApp, email, or anywhere</div>
+        </div>
+        <CopyBtn text={ghiText} label="📋 Copy Everything" variant="big" />
+      </div>
+    </div>
+  );
+}
+
 // ─── APP ───────────────────────────────────────────────────────
 export default function App() {
   const [tab, setTab] = useState("Claims");
@@ -527,7 +553,7 @@ export default function App() {
   const heroSub = {
     Claims:   "Required documents for GHI, GPA and GTLI claims processing",
     Affinity: "Required documents for GHI, Hospicash, Pet, Solar, Credit, Fire & Cyber Insurance",
-    Retail:   "Retail documents will be updated soon",
+    Retail:   "Required documents for GHI claims processing",
   };
 
   return (
@@ -538,7 +564,7 @@ export default function App() {
           <div className="logo">
             <div className="logo-mark">Bharat<span>sure</span></div>
             <div className="logo-divider" />
-            <div className="logo-sub-text">Document Portal</div>
+            <div className="logo-sub-text">Partner Portal</div>
           </div>
           <div className="nav-right">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -572,13 +598,7 @@ export default function App() {
         <div className="page-body">
           {tab === "Claims"   && <ClaimsSection />}
           {tab === "Affinity" && <AffinitySection />}
-          {tab === "Retail"   && (
-            <div className="coming-soon">
-              <div className="coming-icon">🏪</div>
-              <div className="coming-title">Retail — Coming Soon</div>
-              <div className="coming-sub">Retail documents will be added shortly. Check back soon.</div>
-            </div>
-          )}
+          {tab === "Retail"   && <RetailSection />}
         </div>
       </div>
     </>
