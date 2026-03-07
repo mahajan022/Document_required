@@ -347,6 +347,8 @@ const css = `
     --text-primary: #0d1f35; --text-secondary: #4a5568; --text-muted: #718096;
   }
   .portal { width: 100%; min-height: 100vh; background: var(--body-bg); }
+
+  /* NAVBAR */
   .navbar {
     width: 100%; background: var(--navy); padding: 0 48px; height: 70px;
     display: flex; align-items: center; justify-content: space-between;
@@ -358,19 +360,26 @@ const css = `
   .logo-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.15); margin: 0 4px; }
   .logo-sub-text { font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500; letter-spacing: 0.04em; }
   .nav-right { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.45); }
+
+  /* TABBAR */
   .tabbar {
     width: 100%; background: var(--navy-mid);
     border-bottom: 1px solid rgba(255,255,255,0.07);
-    padding: 0 48px; display: flex;
+    padding: 0 48px; display: flex; overflow-x: auto;
+    scrollbar-width: none;
   }
+  .tabbar::-webkit-scrollbar { display: none; }
   .tab-btn {
     padding: 16px 32px; border: none; background: transparent; cursor: pointer;
     font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
     color: rgba(255,255,255,0.4); border-bottom: 3px solid transparent;
-    transition: all 0.2s; display: flex; align-items: center; gap: 9px; margin-bottom: -1px;
+    transition: all 0.2s; display: flex; align-items: center; gap: 9px;
+    margin-bottom: -1px; white-space: nowrap; flex-shrink: 0;
   }
   .tab-btn:hover { color: rgba(255,255,255,0.75); }
   .tab-btn.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+  /* HERO */
   .page-hero {
     width: 100%; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
     padding: 52px 48px 46px; text-align: center; position: relative; overflow: hidden;
@@ -394,46 +403,45 @@ const css = `
   .page-body { width: 100%; padding: 44px 48px 80px; }
 
   /* TEMPLATE CARDS */
-  .tmpl-grid { display: flex; flex-direction: column; gap: 20px; }
   .tmpl-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .tmpl-header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 18px 24px; cursor: pointer; user-select: none;
-    background: #fff; transition: background 0.15s;
+    background: #fff; transition: background 0.15s; gap: 12px;
   }
   .tmpl-header:hover { background: #fafbfc; }
-  .tmpl-header-left { display: flex; align-items: center; gap: 14px; }
+  .tmpl-header-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
   .tmpl-badge {
     padding: 4px 12px; background: rgba(0,180,216,0.1);
     border: 1.5px solid rgba(0,180,216,0.3); border-radius: 7px;
     font-size: 12px; font-weight: 800; color: var(--cyan-dark);
-    letter-spacing: 0.05em; white-space: nowrap;
+    letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0;
   }
   .tmpl-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
   .tmpl-body { border-top: 1px solid var(--border); padding: 24px; background: #fafbfc; }
   .subject-row {
     display: flex; align-items: center; gap: 12px;
     background: #fff; border: 1px solid var(--border); border-radius: 10px;
-    padding: 13px 18px; margin-bottom: 20px;
+    padding: 13px 18px; margin-bottom: 20px; flex-wrap: wrap;
   }
   .subject-label { font-size: 12px; font-weight: 700; color: var(--cyan-dark); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
-  .subject-text { font-size: 14px; color: var(--text-primary); font-weight: 500; flex: 1; }
+  .subject-text { font-size: 14px; color: var(--text-primary); font-weight: 500; flex: 1; min-width: 120px; }
   .mail-body-box {
     background: #fff; border: 1px solid var(--border); border-radius: 10px;
     padding: 20px 22px; white-space: pre-wrap; font-size: 14.5px;
     line-height: 1.8; color: var(--text-primary); font-family: 'Inter', sans-serif;
-    margin-bottom: 18px;
+    margin-bottom: 18px; overflow-x: auto; word-break: break-word;
   }
-  .tmpl-actions { display: flex; gap: 10px; justify-content: flex-end; }
+  .tmpl-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
 
-  /* DOC CARDS (for GPA/GTLI) */
+  /* DOC / INS BLOCKS */
   .ins-block { margin-bottom: 44px; }
   .ins-header {
     background: var(--navy); border-radius: 12px 12px 0 0;
     padding: 18px 24px; display: flex; align-items: center;
-    justify-content: space-between; gap: 16px;
+    justify-content: space-between; gap: 16px; flex-wrap: wrap;
   }
-  .ins-header-left { display: flex; align-items: center; gap: 14px; }
+  .ins-header-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
   .ins-badge {
     padding: 5px 14px; background: rgba(0,180,216,0.15);
     border: 1.5px solid rgba(0,180,216,0.4); border-radius: 8px;
@@ -447,10 +455,10 @@ const css = `
   .doc-card + .doc-card { border-top: 1px solid var(--border); }
   .doc-card-head {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 24px; cursor: pointer; user-select: none; transition: background 0.15s;
+    padding: 18px 24px; cursor: pointer; user-select: none; transition: background 0.15s; gap: 12px;
   }
   .doc-card-head:hover { background: #fafbfc; }
-  .doc-card-head-left { display: flex; align-items: center; gap: 13px; }
+  .doc-card-head-left { display: flex; align-items: center; gap: 13px; min-width: 0; }
   .doc-accent { width: 3px; height: 22px; border-radius: 3px; background: var(--cyan); flex-shrink: 0; }
   .doc-card-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
   .doc-card-sub { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
@@ -465,7 +473,7 @@ const css = `
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: 700; color: var(--cyan-dark); flex-shrink: 0; margin-top: 2px;
   }
-  .doc-text { font-size: 15px; color: var(--text-primary); line-height: 1.65; }
+  .doc-text { font-size: 15px; color: var(--text-primary); line-height: 1.65; word-break: break-word; }
 
   /* BUTTONS */
   .copy-btn-ghost {
@@ -493,11 +501,13 @@ const css = `
   }
   .copy-subj-btn:hover { background: #e0f2fe; border-color: var(--cyan); }
   .copy-subj-btn.copied { background: rgba(0,180,216,0.1); border-color: var(--cyan); }
+
+  /* COPY ALL BANNER */
   .copy-all-banner {
     width: 100%; margin-top: 12px; padding: 30px 40px;
     background: var(--navy); border-radius: 14px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    box-shadow: 0 4px 20px rgba(13,31,53,0.2);
+    box-shadow: 0 4px 20px rgba(13,31,53,0.2); flex-wrap: wrap;
   }
   .copy-all-title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 5px; }
   .copy-all-sub { font-size: 14px; color: rgba(255,255,255,0.4); }
@@ -515,6 +525,56 @@ const css = `
     font-size: 13px; font-weight: 800; color: var(--text-muted);
     letter-spacing: 0.1em; text-transform: uppercase;
     margin: 36px 0 16px; padding-left: 2px;
+  }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .navbar { padding: 0 16px; height: 60px; }
+    .logo-mark { font-size: 18px; }
+    .logo-divider, .logo-sub-text { display: none; }
+    .nav-right { font-size: 11px; gap: 5px; }
+    .nav-right svg { display: none; }
+
+    .tabbar { padding: 0 8px; }
+    .tab-btn { padding: 14px 18px; font-size: 13px; gap: 6px; }
+
+    .page-hero { padding: 32px 16px 28px; }
+    .hero-title { font-size: 24px; }
+    .hero-sub { font-size: 13px; }
+
+    .page-body { padding: 20px 12px 60px; }
+
+    .ins-header { padding: 14px 16px; gap: 10px; }
+    .ins-title { font-size: 15px; }
+    .ins-badge { font-size: 11px; padding: 4px 10px; }
+    .copy-btn-ghost { font-size: 11px; padding: 7px 12px; }
+
+    .doc-card-head { padding: 14px 16px; }
+    .doc-card-title { font-size: 14px; }
+    .doc-card-sub { font-size: 12px; }
+    .doc-card-body { padding: 0 16px 18px; }
+    .doc-text { font-size: 13px; }
+
+    .tmpl-header { padding: 14px 16px; }
+    .tmpl-title { font-size: 14px; }
+    .tmpl-badge { font-size: 11px; padding: 3px 10px; }
+    .tmpl-body { padding: 16px; }
+    .mail-body-box { padding: 14px 16px; font-size: 13px; line-height: 1.7; }
+    .subject-row { padding: 10px 14px; gap: 8px; }
+    .subject-text { font-size: 13px; }
+    .tmpl-actions { justify-content: stretch; }
+    .tmpl-actions button { flex: 1; justify-content: center; }
+
+    .copy-all-banner { padding: 20px 16px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .copy-all-title { font-size: 16px; }
+    .copy-all-sub { font-size: 12px; }
+    .copy-all-btn { width: 100%; justify-content: center; padding: 13px 20px; }
+  }
+
+  @media (max-width: 400px) {
+    .hero-title { font-size: 20px; }
+    .tab-btn { padding: 12px 14px; font-size: 12px; }
+    .ins-title { font-size: 13px; }
   }
 `;
 
@@ -654,7 +714,7 @@ function ClaimsSection() {
         <div className="ins-header">
           <div className="ins-header-left">
             <span className="ins-badge">GMC</span>
-            <span className="ins-title">GHI – Mail Templates</span>
+            <span className="ins-title">Group Medical Cover – Mail Templates</span>
           </div>
           <CopyBtn text={GMC_TEMPLATES.map(t=>`Subject: ${t.subject}\n\n${t.body}`).join("\n\n"+"─".repeat(60)+"\n\n")} label="Copy All Templates" variant="ghost" />
         </div>
