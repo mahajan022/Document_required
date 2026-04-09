@@ -609,7 +609,7 @@ function CopyBtn({ text, label = "Copy", variant = "default" }) {
 
 function TemplateCard({ tmpl }) {
   const [open, setOpen] = useState(false);
-  const fullText = `Subject: ${tmpl.subject}\n\n${tmpl.body}`;
+  const fullText = tmpl.subject ? `Subject: ${tmpl.subject}\n\n${tmpl.body}` : tmpl.body;
   return (
     <div className="tmpl-card">
       <div className="tmpl-header" onClick={() => setOpen(o => !o)}>
@@ -624,15 +624,17 @@ function TemplateCard({ tmpl }) {
       </div>
       {open && (
         <div className="tmpl-body">
-          <div className="subject-row">
-            <span className="subject-label">Subject</span>
-            <span className="subject-text">{tmpl.subject}</span>
-            <CopyBtn text={tmpl.subject} label="Copy" variant="subj" />
-          </div>
+          {tmpl.subject && (
+            <div className="subject-row">
+              <span className="subject-label">Subject</span>
+              <span className="subject-text">{tmpl.subject}</span>
+              <CopyBtn text={tmpl.subject} label="Copy" variant="subj" />
+            </div>
+          )}
           <div className="mail-body-box">{tmpl.body}</div>
           <div className="tmpl-actions">
             <CopyBtn text={tmpl.body} label="Copy Body" />
-            <CopyBtn text={fullText} label="Copy Full Mail" />
+            {tmpl.subject && <CopyBtn text={fullText} label="Copy Full Mail" />}
           </div>
         </div>
       )}
