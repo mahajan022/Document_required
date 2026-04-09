@@ -263,7 +263,6 @@ Healthysure`,
   id: 11,
   label: "Template 11",
   title: "Pre & Post Hospitalisation Documents",
-  subject: "",
   body: `For claiming the pre & post hospitalisation expenses, you need to share the below mentioned details:
 
 1. Prescriptions
