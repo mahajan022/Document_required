@@ -259,6 +259,22 @@ Warm regards,
 Claims Team
 Healthysure`,
   },
+  {
+  id: 11,
+  label: "Template 11",
+  title: "Pre & Post Hospitalisation Documents",
+  subject: "",
+  body: `For claiming the pre & post hospitalisation expenses, you need to share the below mentioned details:
+
+1. Prescriptions
+2. Consultation Notes
+3. Investigation Reports
+4. Discharge Summary
+5. All Original Bills and Receipts
+6. Aadhaar Card of Patient and Employee
+7. Name Printed Cancelled Cheque of Employee
+8. Total Claim Amount`
+}
 ];
 
 // ─── GPA DOCS ──────────────────────────────────────────────────
